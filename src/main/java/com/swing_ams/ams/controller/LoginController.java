@@ -1,13 +1,41 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.swing_ams.ams.controller;
 
-/**
- *
- * @author ngnhatmih
- */
+import com.swing_ams.ams.dao.UserDao;
+import com.swing_ams.ams.model.User;
+import com.swing_ams.ams.view.LoginView;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
 public class LoginController {
+    private final UserDao userDao;
+    private final LoginView loginView;
+
+    public LoginController(LoginView view) {
+        this.loginView = view;
+        this.userDao = new UserDao();
+        view.addLoginListener(new LoginListener());
+    }
     
+    public void showLoginView() {
+        loginView.setVisible(true);
+    }
+    
+    /**
+     * Lớp LoginListener 
+     * chứa cài đặt cho sự kiện click button "Login"
+     */
+    class LoginListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            User user = loginView.getUser();
+            if (userDao.checkUser(user)) {
+                // Hien thi quan ly can ho
+                loginView.showMessage("nhap dung");
+                loginView.setVisible(false);
+            } else {
+                loginView.showMessage("Incorrect username or password.");
+            }
+        }
+    }
 }
