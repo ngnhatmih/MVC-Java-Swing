@@ -67,7 +67,7 @@ public class LoginView extends JFrame implements ActionListener {
         this.add(panel);
         this.pack();
         // cài đặt các thuộc tính cho JFrame
-        this.setTitle("Login");
+        this.setTitle("Sign In");
         this.setSize(400, 300);
         this.setResizable(false);
     }
