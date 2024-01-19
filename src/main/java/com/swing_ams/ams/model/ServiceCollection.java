@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ServiceCollection {
     private List<ApartmentService> apartments;
-
+    
     public List<ApartmentService> getApartments() {
         return apartments;
     }

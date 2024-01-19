@@ -30,13 +30,13 @@ public class LoginView extends JFrame implements ActionListener {
 
     private void initComponents() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        userNameLabel = new JLabel("UserName");
+        userNameLabel = new JLabel("Username");
         passwordlabel = new JLabel("Password");
         userNameField = new JTextField(15);
         passwordField = new JPasswordField(15);
         loginBtn = new JButton();
 
-        loginBtn.setText("Login");
+        loginBtn.setText("LOGIN");
         loginBtn.addActionListener(this);
 
         // tạo spring layout
@@ -67,9 +67,10 @@ public class LoginView extends JFrame implements ActionListener {
         this.add(panel);
         this.pack();
         // cài đặt các thuộc tính cho JFrame
-        this.setTitle("Sign In");
+        this.setTitle("Login");
         this.setSize(400, 300);
         this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     public void showMessage(String message) {
