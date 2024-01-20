@@ -1,5 +1,6 @@
 package com.swing_ams.ams.view;
 
+import com.formdev.flatlaf.FlatClientProperties;
 import com.swing_ams.ams.model.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,11 +16,15 @@ import javax.swing.SpringLayout;
 import javax.swing.WindowConstants;
 
 import com.swing_ams.ams.model.User;
+import java.awt.Font;
+import net.miginfocom.swing.MigLayout;
 
 public class LoginView extends JFrame implements ActionListener {
     private static final long serialVersionUID = 1L;
-    private JLabel userNameLabel;
-    private JLabel passwordlabel;
+    private JLabel title;
+    private JLabel description;
+    private JLabel usernameLabel;
+    private JLabel passwordLabel;
     private JPasswordField passwordField;
     private JTextField userNameField;
     private JButton loginBtn;
@@ -30,38 +35,50 @@ public class LoginView extends JFrame implements ActionListener {
 
     private void initComponents() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        userNameLabel = new JLabel("Username");
-        passwordlabel = new JLabel("Password");
-        userNameField = new JTextField(15);
-        passwordField = new JPasswordField(15);
+        title = new JLabel("Welcome!");
+        description = new JLabel("Please log in to access your account");
+        usernameLabel = new JLabel("Username");
+        passwordLabel = new JLabel("Password");
+        userNameField = new JTextField();
+        passwordField = new JPasswordField();
         loginBtn = new JButton();
 
         loginBtn.setText("LOGIN");
         loginBtn.addActionListener(this);
-
+        
         // tạo spring layout
-        SpringLayout layout = new SpringLayout();
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel(new MigLayout("wrap, fillx,insets 15 45 30 45", "fill,300:280"));
+        panel.putClientProperty(FlatClientProperties.STYLE, "" +
+                "arc:20;" +
+                "[light]background:darken(@background,10%);" +
+                "[dark]background:lighten(@background,1%)");
+        passwordField.putClientProperty(FlatClientProperties.STYLE, "" +
+                "showRevealButton:true");
+        loginBtn.putClientProperty(FlatClientProperties.STYLE, "" +
+                "[light]background:darken(@background,10%);" +
+                "[dark]background:lighten(@background,10%);" +
+                "borderWidth:0;" +
+                "focusWidth:0;" +
+                "innerFocusWidth:0");
+        description.putClientProperty(FlatClientProperties.STYLE, "" +
+                "[light]foreground:lighten(@foreground,30%);" +
+                "[dark]foreground:darken(@foreground,30%)");
+        title.putClientProperty(FlatClientProperties.STYLE, "" +
+                "font:bold +15");
+        
+        userNameField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter your username");
+        passwordField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter your password");
         // tạo đối tượng panel để chứa các thành phần của màn hình login
-        panel.setSize(400, 300);
-        panel.setLayout(layout);
-        panel.add(userNameLabel);
-        panel.add(passwordlabel);
+        panel.add(title);
+        panel.add(description);
+        panel.add(usernameLabel, "gapy 8");
         panel.add(userNameField);
+        panel.add(passwordLabel, "gapy 8");
         panel.add(passwordField);
-        panel.add(loginBtn);
+        panel.add(loginBtn, "gapy 10");
 
         // cài đặt vị trí các thành phần trên màn hình login
-        layout.putConstraint(SpringLayout.WEST, userNameLabel, 20, SpringLayout.WEST, panel);
-        layout.putConstraint(SpringLayout.NORTH, userNameLabel, 80, SpringLayout.NORTH, panel);
-        layout.putConstraint(SpringLayout.WEST, passwordlabel, 20, SpringLayout.WEST, panel);
-        layout.putConstraint(SpringLayout.NORTH, passwordlabel, 105, SpringLayout.NORTH, panel);
-        layout.putConstraint(SpringLayout.WEST, userNameField, 80, SpringLayout.WEST, userNameLabel);
-        layout.putConstraint(SpringLayout.NORTH, userNameField, 80, SpringLayout.NORTH, panel);
-        layout.putConstraint(SpringLayout.WEST, passwordField, 80, SpringLayout.WEST, passwordlabel);
-        layout.putConstraint(SpringLayout.NORTH, passwordField, 105, SpringLayout.NORTH, panel);
-        layout.putConstraint(SpringLayout.WEST, loginBtn, 80, SpringLayout.WEST, passwordlabel);
-        layout.putConstraint(SpringLayout.NORTH, loginBtn, 130, SpringLayout.NORTH, panel);
+        
 
         // add panel tới JFrame
         this.add(panel);

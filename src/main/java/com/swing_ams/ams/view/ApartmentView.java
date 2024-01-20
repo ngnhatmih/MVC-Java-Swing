@@ -4,10 +4,6 @@
  */
 package com.swing_ams.ams.view;
 
-/**
- *
- * @author ngnhatmih
- */
 public class ApartmentView {
     
 }
