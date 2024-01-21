@@ -1,7 +1,6 @@
 package com.swing_ams.ams.view;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import com.swing_ams.ams.model.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,11 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
 import javax.swing.WindowConstants;
 
 import com.swing_ams.ams.model.User;
-import java.awt.Font;
 import net.miginfocom.swing.MigLayout;
 
 public class LoginView extends JFrame implements ActionListener {
@@ -46,7 +43,6 @@ public class LoginView extends JFrame implements ActionListener {
         loginBtn.setText("LOGIN");
         loginBtn.addActionListener(this);
         
-        // tạo spring layout
         JPanel panel = new JPanel(new MigLayout("wrap, fillx,insets 15 45 30 45", "fill,300:280"));
         panel.putClientProperty(FlatClientProperties.STYLE, "" +
                 "arc:20;" +
@@ -76,10 +72,7 @@ public class LoginView extends JFrame implements ActionListener {
         panel.add(passwordLabel, "gapy 8");
         panel.add(passwordField);
         panel.add(loginBtn, "gapy 10");
-
-        // cài đặt vị trí các thành phần trên màn hình login
         
-
         // add panel tới JFrame
         this.add(panel);
         this.pack();

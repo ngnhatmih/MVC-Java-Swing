@@ -13,16 +13,16 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author ngnhatmih
  */
-@XmlRootElement(name = "services")
+@XmlRootElement(name = "apartments")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ServiceCollection {
-    private List<ApartmentService> apartments;
-    
-    public List<ApartmentService> getApartments() {
+public class ApartmentXML {
+    private List<Apartment> apartments;
+
+    public List<Apartment> getApartments() {
         return apartments;
     }
 
-    public void setApartments(List<ApartmentService> apartments) {
+    public void setApartments(List<Apartment> apartments) {
         this.apartments = apartments;
     }
 }

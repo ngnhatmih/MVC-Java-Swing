@@ -12,6 +12,36 @@
             <version>2.3.0.LIFERAY-PATCHED-2</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>3.3</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf-fonts-roboto</artifactId>
+            <version>2.137</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf-fonts-roboto-mono</artifactId>
+            <version>3.000</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.miglayout</groupId>
+            <artifactId>miglayout-swing</artifactId>
+            <version>11.3</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf-extras</artifactId>
+            <version>3.3</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,4 +49,34 @@
         <maven.compiler.target>21</maven.compiler.target>
         <exec.mainClass>com.swing_ams.ams.Ams</exec.mainClass>
     </properties>
+    
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+             <plugins>
+                 <plugin>
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-assembly-plugin</artifactId>
+                     <version>2.4</version>
+                     <configuration>
+                         <descriptorRefs>
+                             <descriptorRef>jar-with-dependencies</descriptorRef>
+                         </descriptorRefs>
+                         <archive>
+                         <manifest>
+                                 <mainClass>com.swing_ams.ams.App</mainClass>
+                             </manifest>
+                         </archive>
+                     </configuration>
+                     <executions>
+                         <execution>
+                             <id>make-assembly</id>
+                             <phase>package</phase>
+                             <goals>                         
+                                 <goal>single</goal>
+                             </goals>
+                         </execution>
+                     </executions>
+                 </plugin>
+             </plugins>
+     </build>
 </project>

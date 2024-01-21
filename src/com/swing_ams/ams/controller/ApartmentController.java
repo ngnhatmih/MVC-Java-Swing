@@ -4,10 +4,21 @@
  */
 package com.swing_ams.ams.controller;
 
+import com.swing_ams.ams.view.ApartmentView;
+
 /**
  *
  * @author ngnhatmih
  */
 public class ApartmentController {
+    private final ApartmentView apartmentView;
+
+    public ApartmentController(ApartmentView apartmentView) {
+        this.apartmentView = apartmentView;
+    } 
     
+    public void showApartmentView()
+    {
+        apartmentView.setVisible(true);
+    }
 }

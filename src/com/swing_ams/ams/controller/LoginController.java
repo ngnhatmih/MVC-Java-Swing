@@ -2,6 +2,7 @@ package com.swing_ams.ams.controller;
 
 import com.swing_ams.ams.dao.UserDao;
 import com.swing_ams.ams.model.User;
+import com.swing_ams.ams.view.ApartmentView;
 import com.swing_ams.ams.view.LoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,8 +31,10 @@ public class LoginController {
         public void actionPerformed(ActionEvent e) {
             User user = loginView.getUser();
             if (userDao.checkUser(user)) {
-                // Hien thi quan ly can ho
-                loginView.showMessage("nhap dung");
+                ApartmentView apartmentView = new ApartmentView();
+                ApartmentController apartmentController = new ApartmentController(apartmentView);
+                apartmentController.showApartmentView();
+                
                 loginView.setVisible(false);
             } else {
                 loginView.showMessage("Incorrect username or password.");
