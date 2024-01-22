@@ -11,8 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -23,7 +25,14 @@ public class ApartmentView extends JFrame implements ActionListener {
     private static final long serialVersionUID = 1L;
     private Map<String, JButton> buttons;
     private JTextField searchField;
-    
+    private JLabel idLabel;
+    private JLabel floorLabel;
+    private JLabel blockLabel;
+    private JLabel title;
+    private JLabel description;
+    private JTextField idField;
+    private JTextField floorField;
+    private JTextField blockField;
     
     public ApartmentView() {
         initComponents();
@@ -32,6 +41,48 @@ public class ApartmentView extends JFrame implements ActionListener {
     private void initComponents()
     {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        title = new JLabel("AMS");
+        title.putClientProperty(FlatClientProperties.STYLE, "" +
+                "font:bold +15");
+        
+        description = new JLabel("Enter apartment info here");
+        description.putClientProperty(FlatClientProperties.STYLE, "" +
+                "[light]foreground:lighten(@foreground,30%);" +
+                "[dark]foreground:darken(@foreground,30%)");
+        
+        idLabel = new JLabel("Apartment ID: ");
+        floorLabel = new JLabel("Floor: ");
+        blockLabel = new JLabel("Block: ");
+        
+        idField = new JTextField();
+        idField.setEditable(false);
+        idField.putClientProperty(FlatClientProperties.STYLE, "focusWidth:0;");
+        idField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Default ID");
+        
+        floorField = new JTextField();
+        floorField.putClientProperty(FlatClientProperties.STYLE, "focusWidth:0;");
+        floorField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter foor");
+        
+        blockField = new JTextField();
+        blockField.putClientProperty(FlatClientProperties.STYLE, "focusWidth:0;");
+        blockField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter block");
+        
+        JPanel inputPanel = new JPanel(new MigLayout("wrap, fillx, insets 20 35 20 35", "fill"));
+        inputPanel.putClientProperty(FlatClientProperties.STYLE, "" +
+                "[dark]background:darken(@background, 5%);" +
+                "[light]background:darken(@background,10%);" +
+                "[dark]foreground:darken(@foreground, 1%)");
+        
+        inputPanel.add(title);
+        inputPanel.add(description);
+        inputPanel.add(new JSeparator());
+        inputPanel.add(idLabel, "gapy 8");
+        inputPanel.add(idField);
+        inputPanel.add(floorLabel, "gapy 8");
+        inputPanel.add(floorField);
+        inputPanel.add(blockLabel, "gapy 8");
+        inputPanel.add(blockField);
+        
         searchField = new JTextField();
         searchField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Search");
         
@@ -39,7 +90,6 @@ public class ApartmentView extends JFrame implements ActionListener {
         buttons.put("Add", new JButton());
         buttons.put("Update", new JButton());
         buttons.put("Delete", new JButton());
-
         
         for (String buttonText : buttons.keySet())
         {
@@ -49,17 +99,17 @@ public class ApartmentView extends JFrame implements ActionListener {
                 "[light]background:darken(@background,10%);" +
                 "[dark]background:lighten(@background,10%);" +
                 "borderWidth:1;" +
-                "focusWidth:0;" +
-                "innerFocusWidth:0");
+                "focusWidth:0;");
         }
         
-        JPanel panel = new JPanel(new MigLayout("wrap, fill, insets 10 10 10 10", "[fill]", "[grow 0][fill]"));
+        JPanel panel = new JPanel(new MigLayout("fill, insets 10 10 10 10", "[fill]", "[grow 0][fill]"));
         panel.putClientProperty(FlatClientProperties.STYLE, "" +
-                "arc:20;" +
                 "[light]background:darken(@background,10%);" +
                 "[dark]background:darken(@background,1%);" +
                 "[light]border:0,0,0,0,shade(@background,5%);" +
                 "[dark]border:0,0,0,0,tint(@background,5%)");
+        
+        panel.add(inputPanel, "width 300, dock west");
         
         JPanel toolBar = new JPanel(new MigLayout("insets 10 10 10 10", "[]push[][][]"));
         toolBar.putClientProperty(FlatClientProperties.STYLE, "" +
@@ -69,11 +119,11 @@ public class ApartmentView extends JFrame implements ActionListener {
                 "focusWidth:0;" +
                 "innerFocusWidth:0");
         
-        toolBar.add(searchField, "width 400");
+        toolBar.add(searchField, "width 200");
         for (JButton button : buttons.values())
             toolBar.add(button, "gap 2"); 
         
-        panel.add(toolBar, "gapy 10");
+        panel.add(toolBar, "wrap, gapy 10");
         
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id");

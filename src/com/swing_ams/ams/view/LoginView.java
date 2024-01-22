@@ -45,20 +45,23 @@ public class LoginView extends JFrame implements ActionListener {
         
         JPanel panel = new JPanel(new MigLayout("wrap, fillx,insets 15 45 30 45", "fill,300:280"));
         panel.putClientProperty(FlatClientProperties.STYLE, "" +
-                "arc:20;" +
                 "[light]background:darken(@background,10%);" +
                 "[dark]background:lighten(@background,1%)");
+        
         passwordField.putClientProperty(FlatClientProperties.STYLE, "" +
                 "showRevealButton:true");
+        
         loginBtn.putClientProperty(FlatClientProperties.STYLE, "" +
                 "[light]background:darken(@background,10%);" +
                 "[dark]background:lighten(@background,10%);" +
                 "borderWidth:0;" +
                 "focusWidth:0;" +
                 "innerFocusWidth:0");
+        
         description.putClientProperty(FlatClientProperties.STYLE, "" +
                 "[light]foreground:lighten(@foreground,30%);" +
                 "[dark]foreground:darken(@foreground,30%)");
+        
         title.putClientProperty(FlatClientProperties.STYLE, "" +
                 "font:bold +15");
         
