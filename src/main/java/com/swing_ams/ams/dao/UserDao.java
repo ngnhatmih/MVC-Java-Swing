@@ -1,6 +1,6 @@
-package com.swing_ams.ams.dao;
+package main.java.com.swing_ams.ams.dao;
 
-import com.swing_ams.ams.model.User;
+import main.java.com.swing_ams.ams.model.User;
 
 public class UserDao {
     public boolean checkUser(User user) {

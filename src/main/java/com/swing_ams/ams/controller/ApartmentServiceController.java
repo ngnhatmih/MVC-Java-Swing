@@ -1,4 +1,4 @@
-package com.swing_ams.ams.controller;
+package main.java.com.swing_ams.ams.controller;
 
 public class ApartmentServiceController {
     

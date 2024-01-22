@@ -1,4 +1,4 @@
-package com.swing_ams.ams.model;
+package main.java.com.swing_ams.ams.model;
 
 public class User {
     private String userName;

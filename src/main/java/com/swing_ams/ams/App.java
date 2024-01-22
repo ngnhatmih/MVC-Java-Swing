@@ -1,10 +1,10 @@
-package com.swing_ams.ams;
+package main.java.com.swing_ams.ams;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.fonts.roboto_mono.FlatRobotoMonoFont;
-import com.swing_ams.ams.controller.LoginController;
-import com.swing_ams.ams.view.LoginView;
+import main.java.com.swing_ams.ams.controller.LoginController;
+import main.java.com.swing_ams.ams.view.LoginView;
 import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.UIManager;

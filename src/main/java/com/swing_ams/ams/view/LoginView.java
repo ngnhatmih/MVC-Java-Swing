@@ -1,4 +1,4 @@
-package com.swing_ams.ams.view;
+package main.java.com.swing_ams.ams.view;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.event.ActionEvent;
@@ -13,7 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-import com.swing_ams.ams.model.User;
+import main.java.com.swing_ams.ams.model.User;
 import net.miginfocom.swing.MigLayout;
 
 public class LoginView extends JFrame implements ActionListener {

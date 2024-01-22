@@ -1,4 +1,4 @@
-package com.swing_ams.ams.utils;
+package main.java.com.swing_ams.ams.utils;
 
 import java.io.File;
 

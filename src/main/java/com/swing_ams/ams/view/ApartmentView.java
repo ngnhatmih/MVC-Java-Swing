@@ -2,13 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.swing_ams.ams.view;
+package main.java.com.swing_ams.ams.view;
 
 import com.formdev.flatlaf.FlatClientProperties;
+import com.formdev.flatlaf.extras.FlatSVGIcon;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -91,6 +94,9 @@ public class ApartmentView extends JFrame implements ActionListener {
         buttons.put("Update", new JButton());
         buttons.put("Delete", new JButton());
         
+        
+        buttons.get("Add").setIcon(new FlatSVGIcon("icons/pencil.svg", 0.35f));
+        
         for (String buttonText : buttons.keySet())
         {
             var button = buttons.get(buttonText);
@@ -132,6 +138,7 @@ public class ApartmentView extends JFrame implements ActionListener {
         
         
         JTable table = new JTable(model) {
+            @Override
             public boolean isCellEditable(int row, int column) {                
                 return false;               
             };
