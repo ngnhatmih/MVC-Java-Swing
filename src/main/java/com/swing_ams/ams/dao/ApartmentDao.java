@@ -1,8 +1,6 @@
 package com.swing_ams.ams.dao;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import com.swing_ams.ams.model.Apartment;
@@ -24,7 +22,7 @@ public class ApartmentDao {
     }
 
     public List<Apartment> readListApartments() {
-        List<Apartment> list = new ArrayList<Apartment>();
+        List<Apartment> list = new ArrayList<>();
         ApartmentXML xml = (ApartmentXML) FileUtils.readXMLFile(APARTMENT_FILE_NAME, ApartmentXML.class);
         
         if (xml != null) {
@@ -34,7 +32,7 @@ public class ApartmentDao {
     }
 
     public void add(Apartment apartment) {
-        long id = (listApartments.size() > 0) ? (listApartments.get(listApartments.size() - 1).getId() + 1) : 1;
+        long id = (!listApartments.isEmpty()) ? (listApartments.get(listApartments.size() - 1).getId() + 1) : 1;
         apartment.setId(id);
         listApartments.add(apartment);
         writeListApartments(listApartments);

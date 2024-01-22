@@ -30,6 +30,7 @@ public class ApartmentController {
     }
 
     class AddApartmentListener implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent e) {
             Apartment apartment = apartmentView.getApartmentInfo();
             if (apartment != null) {
@@ -43,6 +44,7 @@ public class ApartmentController {
     }
 
     class EditApartmentListener implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent e) {
             Apartment apartment = apartmentView.getApartmentInfo();
             if (apartment != null) {
@@ -56,6 +58,7 @@ public class ApartmentController {
     }
 
     class DeleteApartmentListener implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent e) {
             Apartment apartment = apartmentView.getApartmentInfo();
             if (apartment != null) {
@@ -64,13 +67,6 @@ public class ApartmentController {
                 apartmentView.showListApartments(apartmentDao.getListApartments());
                 apartmentView.showMessage("Xóa thành công!");
             }
-        }
-    }
-
-    class ClearApartmentListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            apartmentView.clearApartmentInfo();
         }
     }
     

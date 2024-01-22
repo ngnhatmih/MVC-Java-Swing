@@ -3,23 +3,23 @@
     <apartments>
         <id>1</id>
         <block>A</block>
-        <floor>1</floor>
+        <floor>6</floor>
         <service>
-            <management>2</management>
-            <electricity>3</electricity>
-            <water>4</water>
-            <elevator>5</elevator>
+            <management>100000000</management>
+            <electricity>230000</electricity>
+            <water>23000</water>
+            <elevator>201000</elevator>
         </service>
     </apartments>
     <apartments>
         <id>2</id>
-        <block>A</block>
-        <floor>1</floor>
+        <block>B</block>
+        <floor>2</floor>
         <service>
-            <management>2</management>
-            <electricity>3</electricity>
-            <water>4</water>
-            <elevator>5</elevator>
+            <management>2013001</management>
+            <electricity>2019391</electricity>
+            <water>329392</water>
+            <elevator>12391293</elevator>
         </service>
     </apartments>
 </apartments>

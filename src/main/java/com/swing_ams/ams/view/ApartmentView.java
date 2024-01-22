@@ -6,9 +6,7 @@ package com.swing_ams.ams.view;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
-import com.swing_ams.ams.dao.ApartmentDao;
 import com.swing_ams.ams.model.Apartment;
-import com.swing_ams.ams.utils.FileUtils;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -55,7 +53,7 @@ public class ApartmentView extends JFrame implements ActionListener {
     private JTextField waterField;
     private JTextField elevatorField;
     private JTable table;
-    private String[] columns = {"Id", "Block", "Floor", "Management", "Electricity", "Water", "Elevator"};
+    private String[] columns = {"Id", "Block", "Floor", "Management", "Electricity", "Water", "Elevator", "Total"};
     private DefaultTableModel model = new DefaultTableModel(new Object[][]{}, columns);
     
     public ApartmentView() {
@@ -128,9 +126,6 @@ public class ApartmentView extends JFrame implements ActionListener {
         // Search bar
         searchField = new JTextField();
         searchField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Search");
-        searchField.putClientProperty(FlatClientProperties.STYLE, ""
-                + "focusWidth:0;"
-                + "innerFocusWidth:0");
         searchField.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, new FlatSVGIcon("icons/search.svg"));
 
         // Other operations
@@ -143,15 +138,11 @@ public class ApartmentView extends JFrame implements ActionListener {
             button.setText(buttonText);
             button.putClientProperty(FlatClientProperties.STYLE, ""
                     + "[light]background:darken(@background,10%);"
-                    + "[dark]background:lighten(@background,10%);"
-                    + "borderWidth:1;"
-                    + "focusWidth:0;");
+                    + "[dark]background:lighten(@background,10%);");
         }
 
         // Tool bar: search, add, update, delete
         JPanel toolBar = new JPanel(new MigLayout("insets 10 10 10 10", "[]push[][][]"));
-        toolBar.putClientProperty(FlatClientProperties.STYLE, ""
-                + "borderWidth:1");
 
         toolBar.add(searchField, "width 200");
         toolBar.add(buttons.get("Add"), "gapx 2");
@@ -172,9 +163,7 @@ public class ApartmentView extends JFrame implements ActionListener {
                 + "showHorizontalLines:true;"
                 + "showVerticalLines:true;"
                 + "[dark]selectionBackground:darken(@background, 3%);"
-                + "[light]selectionBackground:lighten(@background, 3%);"
-                + "focusWidth:0;"
-                + "innerFocusWidth:0;");
+                + "[light]selectionBackground:lighten(@background, 3%);");
 
         table.getTableHeader().putClientProperty(FlatClientProperties.STYLE, ""
                 + "height:25;"
@@ -219,9 +208,6 @@ public class ApartmentView extends JFrame implements ActionListener {
         
         // Adds table to scroll panel
         JScrollPane scroll = new JScrollPane(table);
-        scroll.putClientProperty(FlatClientProperties.STYLE, ""
-                + "focusWidth:0;"
-                + "innerFocusWidth:0");
 
         scroll.getVerticalScrollBar().putClientProperty(FlatClientProperties.STYLE, ""
                 + "showButtons:true;"
@@ -266,7 +252,8 @@ public class ApartmentView extends JFrame implements ActionListener {
                     ap.getService().getManagement(), 
                     ap.getService().getElectricity(),
                     ap.getService().getWater(),
-                    ap.getService().getElevator()
+                    ap.getService().getElevator(),
+                    ap.getService().getTotal()
                     });
 
         table.setModel(model);
