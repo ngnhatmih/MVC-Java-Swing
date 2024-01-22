@@ -22,7 +22,9 @@ public class ApartmentService implements Serializable {
     private int water;
     private int elevator;
     
-    public ApartmentService() {}
+    public ApartmentService() {
+        management = electricity = water = elevator = 0;
+    }
     
     public ApartmentService(int management, int electricity, int water, int elevator) {
         super();
@@ -62,5 +64,10 @@ public class ApartmentService implements Serializable {
 
     public void setElevator(int elevator) {
         this.elevator = elevator;
+    }
+    
+    public int getTotal()
+    {
+        return management + electricity + elevator + water;
     }
 }

@@ -5,6 +5,7 @@ import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.fonts.roboto_mono.FlatRobotoMonoFont;
 import com.swing_ams.ams.controller.LoginController;
+import com.swing_ams.ams.dao.ApartmentDao;
 import com.swing_ams.ams.model.Apartment;
 import com.swing_ams.ams.model.ApartmentService;
 import com.swing_ams.ams.utils.FileUtils;
@@ -33,12 +34,10 @@ public class App {
             LoginController controller = new LoginController(view);
             // hiển thị màn hình login
             controller.showLoginView();
-        });  
+        });
     }
     
     public static void main(String[] args) {
-        Apartment ap = new Apartment(1, 2, "A", new ApartmentService(1, 2, 3, 4));
-        FileUtils.writeXMLtoFile("test.xml", ap);
         App.setup();
         App.run();       
     }
