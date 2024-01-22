@@ -277,8 +277,8 @@ public class ApartmentView extends JFrame implements ActionListener {
         int row = table.getSelectedRow();
         if (row >= 0) {
             idField.setText(table.getModel().getValueAt(row, 0).toString());
-            floorField.setText(table.getModel().getValueAt(row, 1).toString());
-            blockField.setText(table.getModel().getValueAt(row, 2).toString());
+            floorField.setText(table.getModel().getValueAt(row, 2).toString());
+            blockField.setText(table.getModel().getValueAt(row, 1).toString());
             managementField.setText(table.getModel().getValueAt(row, 3).toString());
             electricityField.setText(table.getModel().getValueAt(row, 4).toString());
             waterField.setText(table.getModel().getValueAt(row, 5).toString());

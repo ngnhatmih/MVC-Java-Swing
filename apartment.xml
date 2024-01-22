@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <apartments>
     <apartments>
-        <id>8</id>
-        <block>a</block>
-        <floor>1</floor>
-        <service>
-            <management>23</management>
-            <electricity>4</electricity>
-            <water>5</water>
-            <elevator>6</elevator>
-        </service>
-    </apartments>
-    <apartments>
-        <id>9</id>
+        <id>1</id>
         <block>A</block>
         <floor>1</floor>
         <service>
-            <management>1</management>
-            <electricity>1</electricity>
-            <water>1</water>
-            <elevator>1</elevator>
+            <management>2</management>
+            <electricity>3</electricity>
+            <water>4</water>
+            <elevator>5</elevator>
+        </service>
+    </apartments>
+    <apartments>
+        <id>2</id>
+        <block>A</block>
+        <floor>1</floor>
+        <service>
+            <management>2</management>
+            <electricity>3</electricity>
+            <water>4</water>
+            <elevator>5</elevator>
         </service>
     </apartments>
 </apartments>
