@@ -1,9 +1,9 @@
-package main.java.com.swing_ams.ams.controller;
+package com.swing_ams.ams.controller;
 
-import main.java.com.swing_ams.ams.dao.UserDao;
-import main.java.com.swing_ams.ams.model.User;
-import main.java.com.swing_ams.ams.view.ApartmentView;
-import main.java.com.swing_ams.ams.view.LoginView;
+import com.swing_ams.ams.dao.UserDao;
+import com.swing_ams.ams.model.User;
+import com.swing_ams.ams.view.ApartmentView;
+import com.swing_ams.ams.view.LoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

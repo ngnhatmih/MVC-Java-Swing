@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package main.java.com.swing_ams.ams.view;
+package com.swing_ams.ams.view;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
@@ -92,10 +92,7 @@ public class ApartmentView extends JFrame implements ActionListener {
         buttons = new HashMap<>();
         buttons.put("Add", new JButton());
         buttons.put("Update", new JButton());
-        buttons.put("Delete", new JButton());
-        
-        
-        buttons.get("Add").setIcon(new FlatSVGIcon("icons/pencil.svg", 0.35f));
+        buttons.put("Delete", new JButton());   
         
         for (String buttonText : buttons.keySet())
         {
@@ -124,6 +121,8 @@ public class ApartmentView extends JFrame implements ActionListener {
         searchField.putClientProperty(FlatClientProperties.STYLE, "" + 
                 "focusWidth:0;" +
                 "innerFocusWidth:0");
+        
+        searchField.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, new FlatSVGIcon("icons/search.svg"));
         
         toolBar.add(searchField, "width 200");
         for (JButton button : buttons.values())

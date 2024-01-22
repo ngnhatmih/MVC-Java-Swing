@@ -1,8 +1,8 @@
 package main.java.com.swing_ams.ams.dao;
 
-import main.java.com.swing_ams.ams.model.Apartment;
-import main.java.com.swing_ams.ams.model.ApartmentXML;
-import main.java.com.swing_ams.ams.utils.FileUtils;
+import com.swing_ams.ams.model.Apartment;
+import com.swing_ams.ams.model.ApartmentXML;
+import com.swing_ams.ams.utils.FileUtils;
 import java.util.List;
 
 /**
