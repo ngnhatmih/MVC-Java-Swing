@@ -16,11 +16,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Apartment implements Serializable {
     private long id;
-    private byte floor;
+    private int floor;
     private String block;
     private ApartmentService service;
-
-    public Apartment(long id, byte floor, String block, ApartmentService service) {
+    
+    public Apartment() {}
+    
+    public Apartment(int id, int floor, String block, ApartmentService service) {
         super();
         this.id = id;
         this.floor = floor;
@@ -36,7 +38,7 @@ public class Apartment implements Serializable {
         this.id = id;
     }
 
-    public byte getFloor() {
+    public int getFloor() {
         return floor;
     }
 

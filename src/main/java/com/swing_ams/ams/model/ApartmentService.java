@@ -21,7 +21,9 @@ public class ApartmentService implements Serializable {
     private int electricity;
     private int water;
     private int elevator;
-
+    
+    public ApartmentService() {}
+    
     public ApartmentService(int management, int electricity, int water, int elevator) {
         super();
         this.management = management;

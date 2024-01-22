@@ -6,6 +6,8 @@ package com.swing_ams.ams.view;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import com.swing_ams.ams.model.Apartment;
+import com.swing_ams.ams.utils.FileUtils;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,8 +22,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.WindowConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import net.miginfocom.swing.MigLayout;
 
 public class ApartmentView extends JFrame implements ActionListener {
@@ -59,15 +66,12 @@ public class ApartmentView extends JFrame implements ActionListener {
         
         idField = new JTextField();
         idField.setEditable(false);
-        idField.putClientProperty(FlatClientProperties.STYLE, "focusWidth:0;");
         idField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Default ID");
         
         floorField = new JTextField();
-        floorField.putClientProperty(FlatClientProperties.STYLE, "focusWidth:0;");
         floorField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter foor");
         
         blockField = new JTextField();
-        blockField.putClientProperty(FlatClientProperties.STYLE, "focusWidth:0;");
         blockField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter block");
         
         JPanel inputPanel = new JPanel(new MigLayout("wrap, fillx, insets 20 35 20 35", "fill"));
@@ -100,9 +104,7 @@ public class ApartmentView extends JFrame implements ActionListener {
             button.setText(buttonText);
             button.putClientProperty(FlatClientProperties.STYLE, "" +
                 "[light]background:darken(@background,10%);" +
-                "[dark]background:lighten(@background,10%);" +
-                "borderWidth:1;" +
-                "focusWidth:0;");
+                "[dark]background:lighten(@background,10%);");
         }
         
         JPanel panel = new JPanel(new MigLayout("fill, insets 10 10 10 10", "[fill]", "[grow 0][fill]"));
@@ -135,6 +137,9 @@ public class ApartmentView extends JFrame implements ActionListener {
         model.addColumn("Floor");
         model.addColumn("Block");
         
+        Apartment data = (Apartment) FileUtils.readXMLFile("test.xml", Apartment.class);
+        model.addRow(new Object[]{data.getId(), data.getFloor(), data.getBlock()});
+        // ...
         
         JTable table = new JTable(model) {
             @Override
@@ -143,14 +148,44 @@ public class ApartmentView extends JFrame implements ActionListener {
             };
         };
         
+        TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
+        table.setRowSorter(rowSorter);
+        searchField.getDocument().addDocumentListener(new DocumentListener(){
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String text = searchField.getText();
+
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String text = searchField.getText();
+
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        
         table.putClientProperty(FlatClientProperties.STYLE, "" +
                 "rowHeight:25;" +
                 "showHorizontalLines:true;" +
                 "showVerticalLines:true;" +
                 "[dark]selectionBackground:darken(@background, 3%);" + 
-                "[light]selectionBackground:lighten(@background, 3%);" +
-                "focusWidth:0;" +
-                "innerFocusWidth:0;");
+                "[light]selectionBackground:lighten(@background, 3%);");
         
         table.getTableHeader().putClientProperty(FlatClientProperties.STYLE, "" +
                 "height:25;" +
@@ -162,9 +197,6 @@ public class ApartmentView extends JFrame implements ActionListener {
         
         
         JScrollPane scroll = new JScrollPane(table);
-        scroll.putClientProperty(FlatClientProperties.STYLE, "" +
-                "focusWidth:0;" +
-                "innerFocusWidth:0");
         
         scroll.getVerticalScrollBar().putClientProperty(FlatClientProperties.STYLE, "" +
                 "showButtons:true;" +
@@ -186,4 +218,21 @@ public class ApartmentView extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
     }
+    
+    public void addAddBtnListener(ActionListener listener)
+    {
+        
+    }
+    
+    public void addUpdateBtnListener(ActionListener listener)
+    {
+        
+    }
+    
+    public void addDeleteBtnListener(ActionListener listener)
+    {
+        
+    }
+    
+    
 }
