@@ -7,6 +7,10 @@
 
 ## Cấu trúc dự án
 ![img.png](image/IMG01.png)
+- Source: src/main/java
+- Resource: src/main/resources
+- Main: src/main/java/com/swing_ams/ams/App.java
+- Database: apartment.xml
 
 ## Đăng nhập
 ![img.png](image/IMG02.png)
