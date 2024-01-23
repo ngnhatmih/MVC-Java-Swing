@@ -26,7 +26,6 @@
 - Sắp xếp (ấn vào tên cột)
 
 ## Các thư viện sử dụng trong dự án
-- MigLayout để thiết kế bố cục.
-- FlatLaf để tạo theme.
-- XML để trích xuất dữ liệu.
+- <a href="https://github.com/mikaelgrev/miglayout">MigLayout</a> để thiết kế bố cục.
+- <a href="https://github.com/JFormDesigner/FlatLaf">FlatLaf</a> để tạo theme.
 
