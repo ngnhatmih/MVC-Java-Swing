@@ -26,6 +26,7 @@ import javax.swing.WindowConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -54,7 +55,7 @@ public class ApartmentView extends JFrame implements ActionListener {
     private JTextField elevatorField;
     private JTable table;
     private String[] columns = {"Id", "Block", "Floor", "Management", "Electricity", "Water", "Elevator", "Total"};
-    private DefaultTableModel model = new DefaultTableModel(new Object[][]{}, columns);
+    private DefaultTableModel model;
     
     public ApartmentView() {
         initComponents();
@@ -151,13 +152,30 @@ public class ApartmentView extends JFrame implements ActionListener {
 
         // Table view
         // Creates table
+        model = new DefaultTableModel(new Object[][]{}, columns)
+        {
+            @Override
+            public Class getColumnClass(int column) {
+                switch (column) {
+                    case 1:
+                        return String.class;
+                    default:
+                        return Integer.class;
+                }
+            }
+        };
+        
         table = new JTable(model) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
- 
+        
+        DefaultTableCellRenderer right = new DefaultTableCellRenderer();
+        right.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);
+        table.getColumn("Block").setCellRenderer(right);
+        
         table.putClientProperty(FlatClientProperties.STYLE, ""
                 + "rowHeight:25;"
                 + "showHorizontalLines:true;"
