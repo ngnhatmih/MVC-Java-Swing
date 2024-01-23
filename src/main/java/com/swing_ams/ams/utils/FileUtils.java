@@ -42,6 +42,7 @@ public class FileUtils {
      */
     public static Object readXMLFile(String fileName, Class<?> clazz) {
         try {
+            System.out.println(System.getProperty("user.dir"));
             File xmlFile = new File(fileName);
             JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();

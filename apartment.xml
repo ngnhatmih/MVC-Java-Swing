@@ -23,17 +23,6 @@
         </service>
     </apartments>
     <apartments>
-        <id>4</id>
-        <block>A</block>
-        <floor>2</floor>
-        <service>
-            <management>28913</management>
-            <electricity>298131</electricity>
-            <water>8213</water>
-            <elevator>21939013</elevator>
-        </service>
-    </apartments>
-    <apartments>
         <id>5</id>
         <block>A</block>
         <floor>2</floor>
@@ -64,17 +53,6 @@
             <electricity>12013</electricity>
             <water>29128193</water>
             <elevator>28103</elevator>
-        </service>
-    </apartments>
-    <apartments>
-        <id>8</id>
-        <block>C1</block>
-        <floor>2</floor>
-        <service>
-            <management>210321</management>
-            <electricity>1293021</electricity>
-            <water>2138920</water>
-            <elevator>182903</elevator>
         </service>
     </apartments>
     <apartments>
@@ -207,6 +185,39 @@
             <electricity>1293021</electricity>
             <water>2138920</water>
             <elevator>182903</elevator>
+        </service>
+    </apartments>
+    <apartments>
+        <id>21</id>
+        <block>C2</block>
+        <floor>2</floor>
+        <service>
+            <management>9201381</management>
+            <electricity>2819031</electricity>
+            <water>2819301</water>
+            <elevator>128390</elevator>
+        </service>
+    </apartments>
+    <apartments>
+        <id>23</id>
+        <block>A</block>
+        <floor>2</floor>
+        <service>
+            <management>28913</management>
+            <electricity>298131</electricity>
+            <water>8213</water>
+            <elevator>21939013</elevator>
+        </service>
+    </apartments>
+    <apartments>
+        <id>25</id>
+        <block>C1</block>
+        <floor>5</floor>
+        <service>
+            <management>2190320</management>
+            <electricity>12013</electricity>
+            <water>29128193</water>
+            <elevator>28103</elevator>
         </service>
     </apartments>
 </apartments>

@@ -10,8 +10,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class ApartmentController {
-    private ApartmentDao apartmentDao;
-    private ApartmentView apartmentView;
+    private final ApartmentDao apartmentDao;
+    private final ApartmentView apartmentView;
 
     public ApartmentController(ApartmentView view) {
         this.apartmentView = view;
