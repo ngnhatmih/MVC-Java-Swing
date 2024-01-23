@@ -7,9 +7,11 @@
 
 ## Cấu trúc dự án
 ![img.png](image/IMG01.png)
+
 ## Đăng nhập
 - Tài khoản: admin
 - Mật khẩu: 123
+![img.png](image/IMG02.png)
 
 ## Các chức năng
 - Hiển thị dữ liệu dưới dạng bảng.
