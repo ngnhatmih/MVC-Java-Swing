@@ -5,15 +5,9 @@ import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.fonts.roboto_mono.FlatRobotoMonoFont;
 import com.swing_ams.ams.controller.LoginController;
-import com.swing_ams.ams.dao.ApartmentDao;
-import com.swing_ams.ams.model.Apartment;
-import com.swing_ams.ams.model.ApartmentService;
-import com.swing_ams.ams.utils.FileUtils;
 import com.swing_ams.ams.view.LoginView;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.UIManager;
 
 public class App {
