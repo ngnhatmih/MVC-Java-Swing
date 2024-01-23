@@ -12,14 +12,36 @@
         </service>
     </apartments>
     <apartments>
-        <id>2</id>
-        <block>B</block>
+        <id>3</id>
+        <block>A</block>
         <floor>2</floor>
         <service>
-            <management>2013001</management>
-            <electricity>2019391</electricity>
-            <water>329392</water>
-            <elevator>12391293</elevator>
+            <management>300000</management>
+            <electricity>42222000</electricity>
+            <water>520200</water>
+            <elevator>600000</elevator>
+        </service>
+    </apartments>
+    <apartments>
+        <id>4</id>
+        <block>A</block>
+        <floor>1</floor>
+        <service>
+            <management>1</management>
+            <electricity>1</electricity>
+            <water>1</water>
+            <elevator>1</elevator>
+        </service>
+    </apartments>
+    <apartments>
+        <id>5</id>
+        <block>A</block>
+        <floor>2</floor>
+        <service>
+            <management>1</management>
+            <electricity>1</electricity>
+            <water>1</water>
+            <elevator>1</elevator>
         </service>
     </apartments>
 </apartments>
