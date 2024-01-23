@@ -9,11 +9,13 @@
 ![img.png](image/IMG01.png)
 
 ## Đăng nhập
-- Tài khoản: admin
-- Mật khẩu: 123
 ![img.png](image/IMG02.png)
 
+- Tài khoản: admin
+- Mật khẩu: 123
+
 ## Các chức năng
+![img.png](image/IMG03.png)
 - Hiển thị dữ liệu dưới dạng bảng.
 - Thêm, sửa, xóa thông tin căn hộ.
 - Tìm kiếm động.
