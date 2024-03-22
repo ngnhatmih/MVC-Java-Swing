@@ -9,10 +9,13 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.swing_ams.ams.model.Apartment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -47,8 +50,8 @@ public class ApartmentView extends JFrame implements ActionListener {
     private JLabel title;
     private JLabel description;
     private JTextField idField;
-    private JTextField blockField;
-    private JTextField floorField;
+    private JComboBox blockComboBox;
+    private JComboBox floorComboBox;
     private JTextField managementField;
     private JTextField electricityField;
     private JTextField waterField;
@@ -56,6 +59,10 @@ public class ApartmentView extends JFrame implements ActionListener {
     private JTable table;
     private String[] columns = {"Id", "Block", "Floor", "Management", "Electricity", "Water", "Elevator", "Total"};
     private DefaultTableModel model;
+    private String[] blocks = {"A1", "A2", "B1", "B2", "B3", "C1", "C2", "C3"};
+    private Integer[] floors = new Integer[20];
+    private Locale locale = new Locale("vi", "VN");
+    private NumberFormat numFormat = NumberFormat.getCurrencyInstance(locale);
     
     public ApartmentView() {
         initComponents();
@@ -80,10 +87,13 @@ public class ApartmentView extends JFrame implements ActionListener {
         electricityLabel = new JLabel("Electricity");
         waterLabel = new JLabel("Water");
         elevatorLabel = new JLabel("Elevator");
-
+        
         idField = new JTextField();
-        floorField = new JTextField();
-        blockField = new JTextField();
+        for (int i = 0; i < floors.length; i++) {
+            floors[i] = i+1;
+        }
+        floorComboBox = new JComboBox(floors);
+        blockComboBox = new JComboBox(blocks);
         managementField = new JTextField();
         electricityField = new JTextField();
         waterField = new JTextField();
@@ -92,8 +102,6 @@ public class ApartmentView extends JFrame implements ActionListener {
         idField.setEditable(false);
 
         idField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Default ID");
-        floorField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter floor");
-        blockField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter block");
         managementField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter management");
         electricityField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter electricity");
         waterField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter water");
@@ -112,9 +120,9 @@ public class ApartmentView extends JFrame implements ActionListener {
         inputPanel.add(idLabel, "gapy 6");
         inputPanel.add(idField);
         inputPanel.add(floorLabel, "gapy 6");
-        inputPanel.add(floorField);
+        inputPanel.add(floorComboBox);
         inputPanel.add(blockLabel, "gapy 6");
-        inputPanel.add(blockField);
+        inputPanel.add(blockComboBox);
         inputPanel.add(managementLabel, "gapy 6");
         inputPanel.add(managementField);
         inputPanel.add(electricityLabel, "gapy 6");
@@ -267,11 +275,11 @@ public class ApartmentView extends JFrame implements ActionListener {
                     ap.getId(), 
                     ap.getBlock(), 
                     ap.getFloor(), 
-                    ap.getService().getManagement(), 
-                    ap.getService().getElectricity(),
-                    ap.getService().getWater(),
-                    ap.getService().getElevator(),
-                    ap.getService().getTotal()
+                    numFormat.format(ap.getService().getManagement()), 
+                    numFormat.format(ap.getService().getElectricity()),
+                    numFormat.format(ap.getService().getWater()),
+                    numFormat.format(ap.getService().getElevator()),
+                    numFormat.format(ap.getService().getTotal())
                     });
 
         table.setModel(model);
@@ -282,19 +290,29 @@ public class ApartmentView extends JFrame implements ActionListener {
         int row = table.getSelectedRow();
         if (row >= 0) {
             idField.setText(table.getModel().getValueAt(row, 0).toString());
-            floorField.setText(table.getModel().getValueAt(row, 2).toString());
-            blockField.setText(table.getModel().getValueAt(row, 1).toString());
-            managementField.setText(table.getModel().getValueAt(row, 3).toString());
-            electricityField.setText(table.getModel().getValueAt(row, 4).toString());
-            waterField.setText(table.getModel().getValueAt(row, 5).toString());
-            elevatorField.setText(table.getModel().getValueAt(row, 6).toString());
+            for (int i = 0; i < floorComboBox.getItemCount(); i++) {
+                if (floorComboBox.getItemAt(i).toString().equals(table.getModel().getValueAt(row, 2).toString())) {
+                    floorComboBox.setSelectedIndex(i);
+                    break;
+                }
+            }
+            for (int i = 0; i < blockComboBox.getItemCount(); i++) {
+                if (blockComboBox.getItemAt(i).toString().equals(table.getModel().getValueAt(row, 1).toString())) {
+                    blockComboBox.setSelectedIndex(i);
+                    break;
+                }
+            }
+            managementField.setText(table.getModel().getValueAt(row, 3).toString().replaceAll("[^0-9]", ""));
+            electricityField.setText(table.getModel().getValueAt(row, 4).toString().replaceAll("[^0-9]", ""));
+            waterField.setText(table.getModel().getValueAt(row, 5).toString().replaceAll("[^0-9]", ""));
+            elevatorField.setText(table.getModel().getValueAt(row, 6).toString().replaceAll("[^0-9]", ""));
         }
     }
 
     public void clearApartmentInfo() {
         idField.setText("");
-        floorField.setText("");
-        blockField.setText("");
+        floorComboBox.setSelectedIndex(0);
+        blockComboBox.setSelectedIndex(0);
         managementField.setText("");
         electricityField.setText("");
         waterField.setText("");
@@ -303,8 +321,8 @@ public class ApartmentView extends JFrame implements ActionListener {
 
     public void showApartment(Apartment apartment) {
         idField.setText(String.valueOf(apartment.getId()));
-        floorField.setText(String.valueOf(apartment.getFloor()));
-        blockField.setText(apartment.getBlock());
+        floorComboBox.setSelectedItem(apartment.getFloor());
+        blockComboBox.setSelectedItem(apartment.getBlock());
         managementField.setText(String.valueOf(apartment.getService().getManagement()));
         electricityField.setText(String.valueOf(apartment.getService().getElectricity()));
         waterField.setText(String.valueOf(apartment.getService().getWater()));
@@ -312,7 +330,7 @@ public class ApartmentView extends JFrame implements ActionListener {
     }
 
     public Apartment getApartmentInfo() {
-        if (!validateFloor() || !validateBlock() || !validateManagement() || !validateElectricity() || !validateWater()) {
+        if (!validateManagement() || !validateElectricity() || !validateWater()) {
             return null;
         }
         try {
@@ -320,8 +338,8 @@ public class ApartmentView extends JFrame implements ActionListener {
             if (idField.getText() != null && !"".equals(idField.getText())) {
                 apartment.setId(Integer.parseInt(idField.getText()));
             }
-            apartment.setFloor(Integer.parseInt(floorField.getText().trim()));
-            apartment.setBlock(blockField.getText().trim());
+            apartment.setFloor((Integer) floorComboBox.getSelectedItem());
+            apartment.setBlock((String) blockComboBox.getSelectedItem());
             apartment.getService().setManagement(Integer.parseInt(managementField.getText().trim()));
             apartment.getService().setElectricity(Integer.parseInt(electricityField.getText().trim()));
             apartment.getService().setWater(Integer.parseInt(waterField.getText().trim()));
@@ -331,14 +349,6 @@ public class ApartmentView extends JFrame implements ActionListener {
             showMessage(e.getMessage());
         }
         return null;
-    }
-
-    private boolean validateFloor() {
-        return true;
-    }
-
-    private boolean validateBlock() {
-        return true;
     }
 
     private boolean validateManagement() {
