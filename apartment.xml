@@ -2,222 +2,155 @@
 <apartments>
     <apartments>
         <id>1</id>
-        <block>A</block>
-        <floor>6</floor>
+        <block>A1</block>
+        <floor>1</floor>
+        <owner>Minh</owner>
         <service>
             <management>100000000</management>
-            <electricity>230000</electricity>
-            <water>23000</water>
-            <elevator>201000</elevator>
+            <electricity>200000</electricity>
+            <water>100000</water>
+            <elevator>20000</elevator>
+            <paid>true</paid>
+            <date>
+                <quarter>III</quarter>
+                <year>2023</year>
+            </date>
+        </service>
+    </apartments>
+    <apartments>
+        <id>2</id>
+        <block>A1</block>
+        <floor>1</floor>
+        <owner>Duong</owner>
+        <service>
+            <management>10000000</management>
+            <electricity>200000</electricity>
+            <water>200000</water>
+            <elevator>100000</elevator>
+            <paid>false</paid>
+            <date>
+                <quarter>II</quarter>
+                <year>2024</year>
+            </date>
         </service>
     </apartments>
     <apartments>
         <id>3</id>
-        <block>A</block>
-        <floor>2</floor>
+        <block>A1</block>
+        <floor>1</floor>
+        <owner>Nam</owner>
         <service>
-            <management>300000</management>
-            <electricity>42222000</electricity>
-            <water>520200</water>
-            <elevator>600000</elevator>
+            <management>20000000</management>
+            <electricity>2100000</electricity>
+            <water>200000</water>
+            <elevator>2000000</elevator>
+            <paid>false</paid>
+            <date>
+                <quarter>I</quarter>
+                <year>2024</year>
+            </date>
         </service>
     </apartments>
     <apartments>
         <id>5</id>
-        <block>A</block>
-        <floor>2</floor>
+        <block>B2</block>
+        <floor>5</floor>
+        <owner>Thanh</owner>
         <service>
-            <management>2190320</management>
-            <electricity>12013</electricity>
-            <water>29128193</water>
-            <elevator>28103</elevator>
+            <management>21313</management>
+            <electricity>213123</electricity>
+            <water>213213</water>
+            <elevator>213123</elevator>
+            <paid>true</paid>
+            <date>
+                <quarter>II</quarter>
+                <year>2024</year>
+            </date>
         </service>
     </apartments>
     <apartments>
         <id>6</id>
-        <block>B</block>
-        <floor>10</floor>
+        <block>A1</block>
+        <floor>5</floor>
+        <owner>Duong</owner>
         <service>
-            <management>19293</management>
-            <electricity>219392</electricity>
-            <water>21939</water>
-            <elevator>12939</elevator>
+            <management>10000000</management>
+            <electricity>200000</electricity>
+            <water>200000</water>
+            <elevator>100000</elevator>
+            <paid>false</paid>
+            <date>
+                <quarter>IV</quarter>
+                <year>2024</year>
+            </date>
         </service>
     </apartments>
     <apartments>
         <id>7</id>
         <block>C1</block>
-        <floor>5</floor>
+        <floor>7</floor>
+        <owner>Phu</owner>
         <service>
-            <management>2190320</management>
-            <electricity>12013</electricity>
-            <water>29128193</water>
-            <elevator>28103</elevator>
+            <management>123123123</management>
+            <electricity>21321312</electricity>
+            <water>123123</water>
+            <elevator>21321321</elevator>
+            <paid>true</paid>
+            <date>
+                <quarter>IV</quarter>
+                <year>2022</year>
+            </date>
         </service>
     </apartments>
     <apartments>
         <id>9</id>
-        <block>C2</block>
-        <floor>2</floor>
+        <block>C1</block>
+        <floor>7</floor>
+        <owner>Phu</owner>
         <service>
-            <management>9201381</management>
-            <electricity>2819031</electricity>
-            <water>2819301</water>
-            <elevator>128390</elevator>
+            <management>123123123</management>
+            <electricity>21321312</electricity>
+            <water>123123</water>
+            <elevator>21321321</elevator>
+            <paid>true</paid>
+            <date>
+                <quarter>II</quarter>
+                <year>2015</year>
+            </date>
         </service>
     </apartments>
     <apartments>
         <id>10</id>
-        <block>C2</block>
-        <floor>2</floor>
+        <block>C1</block>
+        <floor>7</floor>
+        <owner>Phu</owner>
         <service>
-            <management>9201381</management>
-            <electricity>2819031</electricity>
-            <water>2819301</water>
-            <elevator>128390</elevator>
+            <management>123123123</management>
+            <electricity>21321312</electricity>
+            <water>123123</water>
+            <elevator>21321321</elevator>
+            <paid>true</paid>
+            <date>
+                <quarter>II</quarter>
+                <year>2015</year>
+            </date>
         </service>
     </apartments>
     <apartments>
         <id>11</id>
-        <block>C2</block>
-        <floor>2</floor>
-        <service>
-            <management>9201381</management>
-            <electricity>2819031</electricity>
-            <water>2819301</water>
-            <elevator>128390</elevator>
-        </service>
-    </apartments>
-    <apartments>
-        <id>12</id>
-        <block>C2</block>
-        <floor>2</floor>
-        <service>
-            <management>9201381</management>
-            <electricity>2819031</electricity>
-            <water>2819301</water>
-            <elevator>128390</elevator>
-        </service>
-    </apartments>
-    <apartments>
-        <id>13</id>
-        <block>C1</block>
-        <floor>5</floor>
-        <service>
-            <management>2190320</management>
-            <electricity>12013</electricity>
-            <water>29128193</water>
-            <elevator>28103</elevator>
-        </service>
-    </apartments>
-    <apartments>
-        <id>14</id>
-        <block>C2</block>
-        <floor>2</floor>
-        <service>
-            <management>9201381</management>
-            <electricity>2819031</electricity>
-            <water>2819301</water>
-            <elevator>128390</elevator>
-        </service>
-    </apartments>
-    <apartments>
-        <id>15</id>
-        <block>A</block>
-        <floor>2</floor>
-        <service>
-            <management>2190320</management>
-            <electricity>12013</electricity>
-            <water>29128193</water>
-            <elevator>28103</elevator>
-        </service>
-    </apartments>
-    <apartments>
-        <id>16</id>
-        <block>B</block>
-        <floor>10</floor>
-        <service>
-            <management>19293</management>
-            <electricity>219392</electricity>
-            <water>21939</water>
-            <elevator>12939</elevator>
-        </service>
-    </apartments>
-    <apartments>
-        <id>17</id>
-        <block>A</block>
+        <block>B3</block>
         <floor>6</floor>
+        <owner>Minh</owner>
         <service>
-            <management>100000000</management>
-            <electricity>230000</electricity>
-            <water>23000</water>
-            <elevator>201000</elevator>
-        </service>
-    </apartments>
-    <apartments>
-        <id>18</id>
-        <block>C2</block>
-        <floor>2</floor>
-        <service>
-            <management>9201381</management>
-            <electricity>2819031</electricity>
-            <water>2819301</water>
-            <elevator>128390</elevator>
-        </service>
-    </apartments>
-    <apartments>
-        <id>19</id>
-        <block>B</block>
-        <floor>10</floor>
-        <service>
-            <management>19293</management>
-            <electricity>219392</electricity>
-            <water>21939</water>
-            <elevator>12939</elevator>
-        </service>
-    </apartments>
-    <apartments>
-        <id>20</id>
-        <block>C1</block>
-        <floor>2</floor>
-        <service>
-            <management>210321</management>
-            <electricity>1293021</electricity>
-            <water>2138920</water>
-            <elevator>182903</elevator>
-        </service>
-    </apartments>
-    <apartments>
-        <id>21</id>
-        <block>C2</block>
-        <floor>2</floor>
-        <service>
-            <management>9201381</management>
-            <electricity>2819031</electricity>
-            <water>2819301</water>
-            <elevator>128390</elevator>
-        </service>
-    </apartments>
-    <apartments>
-        <id>23</id>
-        <block>A</block>
-        <floor>2</floor>
-        <service>
-            <management>28913</management>
-            <electricity>298131</electricity>
-            <water>8213</water>
-            <elevator>21939013</elevator>
-        </service>
-    </apartments>
-    <apartments>
-        <id>25</id>
-        <block>C1</block>
-        <floor>5</floor>
-        <service>
-            <management>2190320</management>
-            <electricity>12013</electricity>
-            <water>29128193</water>
-            <elevator>28103</elevator>
+            <management>1000000</management>
+            <electricity>200000</electricity>
+            <water>100000</water>
+            <elevator>20000</elevator>
+            <paid>false</paid>
+            <date>
+                <quarter>II</quarter>
+                <year>1993</year>
+            </date>
         </service>
     </apartments>
 </apartments>

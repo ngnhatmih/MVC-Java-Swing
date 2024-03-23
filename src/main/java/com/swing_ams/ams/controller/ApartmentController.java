@@ -39,7 +39,7 @@ public class ApartmentController {
                 apartmentDao.add(apartment);
                 apartmentView.showApartment(apartment);
                 apartmentView.showListApartments(apartmentDao.getListApartments());
-                apartmentView.showMessage("Thêm thành công!");
+                apartmentView.showMessage("Added successfully!");
                 apartmentView.clearApartmentInfo();
             }
         }
@@ -54,7 +54,7 @@ public class ApartmentController {
                 apartmentDao.edit(apartment);
                 apartmentView.showApartment(apartment);
                 apartmentView.showListApartments(apartmentDao.getListApartments());
-                apartmentView.showMessage("Cập nhật thành công!");
+                apartmentView.showMessage("Updated successfully!");
                 apartmentView.clearApartmentInfo();
             }
         }
@@ -69,7 +69,7 @@ public class ApartmentController {
                 apartmentDao.delete(apartment);
                 apartmentView.clearApartmentInfo();
                 apartmentView.showListApartments(apartmentDao.getListApartments());
-                apartmentView.showMessage("Xóa thành công!");
+                apartmentView.showMessage("Deleted successfully!");
             }
         }
     }

@@ -8,6 +8,7 @@ import com.swing_ams.ams.model.ApartmentService.Quarter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -40,11 +41,11 @@ public class ApartmentView extends JFrame implements ActionListener {
     private static final long serialVersionUID = 1L;
     private Map<String, JButton> buttons;
     private JTextField searchField;
-    
+
     private JLabel idLabel;
     private JLabel ownerLabel;
     private JLabel paidLabel; // pls do this shit
-    private JLabel dateLabel; 
+    private JLabel dateLabel;
     private JLabel quarterLabel;
     private JLabel yearLabel;
     private JLabel floorLabel;
@@ -55,29 +56,34 @@ public class ApartmentView extends JFrame implements ActionListener {
     private JLabel elevatorLabel;
     private JLabel title;
     private JLabel description;
-    
+
     private JTextField idField;
     private JTextField ownerField;
-    private ButtonGroup radioGroup; // do this shit
-    private JRadioButton paidRadioButton; // do this shit
-    private JRadioButton unpaidRadioButton; // do this shit
-    private JComboBox quarterComboBox; // do this shit
-    private JComboBox yearComboBox; // do this shit
+    private ButtonGroup radioGroup;
+    private JRadioButton paidRadioButton;
+    private JRadioButton unpaidRadioButton;
+    private JComboBox quarterComboBox;
+    private JComboBox yearComboBox;
     private JComboBox blockComboBox;
     private JComboBox floorComboBox;
+    private JComboBox blockFilter;
+    private JComboBox paidFilter;
     private JTextField managementField;
     private JTextField electricityField;
     private JTextField waterField;
     private JTextField elevatorField;
-    
+
     private JTable table;
     private String[] columns = {"Id", "Owner", "Block", "Floor", "Paid", "Date", "Management", "Electricity", "Water", "Elevator", "Total"};
     private DefaultTableModel model;
-    
+
     private String[] quarters = {"I", "II", "III", "IV"};
     private Integer[] years = new Integer[124];
     private String[] blocks = {"A1", "A2", "B1", "B2", "B3", "C1", "C2", "C3"};
     private Integer[] floors = new Integer[20];
+    private String[] blockFilterValues = {"None", "A1", "A2", "B1", "B2", "B3", "C1", "C2", "C3"};
+    private String[] paidFilterValues = {"None", "paid", "unpaid"};
+
     private final Locale locale = new Locale("vi", "VN");
     private NumberFormat numFormat = NumberFormat.getCurrencyInstance(locale);
 
@@ -109,15 +115,15 @@ public class ApartmentView extends JFrame implements ActionListener {
         electricityLabel = new JLabel("Electricity");
         waterLabel = new JLabel("Water");
         elevatorLabel = new JLabel("Elevator");
-        
+
         for (int i = 0; i < floors.length; i++) {
             floors[i] = i + 1;
         }
-        
+
         for (int i = 0; i < years.length; i++) {
             years[i] = 2024 - i; // Start from 2024
         }
-        
+
         idField = new JTextField();
         ownerField = new JTextField();
         radioGroup = new ButtonGroup();
@@ -177,7 +183,7 @@ public class ApartmentView extends JFrame implements ActionListener {
         inputPanel.add(waterField);
         inputPanel.add(elevatorLabel, "gapy 6");
         inputPanel.add(elevatorField);
-        
+
         JScrollPane inputScrollPane = new JScrollPane(inputPanel);
         inputScrollPane.getVerticalScrollBar().setUnitIncrement(16);
         inputScrollPane.getVerticalScrollBar().putClientProperty(FlatClientProperties.STYLE, ""
@@ -187,7 +193,7 @@ public class ApartmentView extends JFrame implements ActionListener {
                 + "thumbInsets:2,2,2,2;"
                 + "track:@background;"
                 + "trackArc:999;");
-        
+
         // Search bar
         searchField = new JTextField();
         searchField.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Search");
@@ -206,10 +212,34 @@ public class ApartmentView extends JFrame implements ActionListener {
                     + "[dark]background:lighten(@background,10%);");
         }
 
+        blockFilter = new JComboBox(blockFilterValues);
+        paidFilter = new JComboBox(paidFilterValues);
+
+        ActionListener filterListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedBlock = (String) blockFilter.getSelectedItem();
+                String selectedPaid = (String) paidFilter.getSelectedItem();
+
+                RowFilter<Object, Object> blockRowFilter = RowFilter.regexFilter(selectedBlock.equals("None") ? ".*" : selectedBlock, 2);
+                RowFilter<Object, Object> paidRowFilter = RowFilter.regexFilter(selectedPaid.equals("None") ? ".*" : "^" + selectedPaid + "$", 4);
+
+                RowFilter<Object, Object> combinedFilter = RowFilter.andFilter(Arrays.asList(blockRowFilter, paidRowFilter));
+
+                TableRowSorter<DefaultTableModel> sorter = (TableRowSorter<DefaultTableModel>) table.getRowSorter();
+                sorter.setRowFilter(combinedFilter);
+            }
+        };
+
+        blockFilter.addActionListener(filterListener);
+        paidFilter.addActionListener(filterListener);
+
         // Tool bar: search, add, update, delete
-        JPanel toolBar = new JPanel(new MigLayout("insets 10 10 10 10", "[]push[][][]"));
+        JPanel toolBar = new JPanel(new MigLayout("insets 10 10 10 10", "[]push[][][][][]"));
 
         toolBar.add(searchField, "width 200");
+        toolBar.add(blockFilter, "gapx 2");
+        toolBar.add(paidFilter, "gapx 2");
         toolBar.add(buttons.get("Add"), "gapx 2");
         toolBar.add(buttons.get("Update"), "gapx 2");
         toolBar.add(buttons.get("Delete"), "gapx 2");
@@ -234,8 +264,9 @@ public class ApartmentView extends JFrame implements ActionListener {
                 return false;
             }
         };
-        table.setRowSorter(new TableRowSorter(model));
-        
+        TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
+        table.setRowSorter(rowSorter);
+
         DefaultTableCellRenderer right = new DefaultTableCellRenderer();
         right.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);
         table.getColumn("Block").setCellRenderer(right);
@@ -256,8 +287,6 @@ public class ApartmentView extends JFrame implements ActionListener {
         table.getTableHeader().setReorderingAllowed(false);
 
         // Searchs element in table
-        TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
-        table.setRowSorter(rowSorter);
         searchField.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
@@ -306,7 +335,7 @@ public class ApartmentView extends JFrame implements ActionListener {
                 + "[dark]background:darken(@background,1%);"
                 + "[light]border:0,0,0,0,shade(@background,5%);"
                 + "[dark]border:0,0,0,0,tint(@background,5%)");
-        
+
         panel.add(inputScrollPane, "width 300, dock west");
         panel.add(toolBar, "wrap, gapy 10");
         panel.add(scroll);
@@ -315,7 +344,7 @@ public class ApartmentView extends JFrame implements ActionListener {
         this.pack();
 
         this.setTitle("AMS");
-        this.setSize(900, 600);
+        this.setSize(1200, 600);
         this.setLocationRelativeTo(null);
     }
 
@@ -342,7 +371,7 @@ public class ApartmentView extends JFrame implements ActionListener {
                 });
             }
         }
-        
+
         table.setModel(model);
         table.repaint();
     }
@@ -371,7 +400,7 @@ public class ApartmentView extends JFrame implements ActionListener {
             } else {
                 unpaidRadioButton.setSelected(true);
             }
-            
+
             String[] tmp = table.getModel().getValueAt(_row, 5).toString().split("/");
             for (int i = 0; i < quarterComboBox.getItemCount(); i++) {
                 if (quarterComboBox.getItemAt(i).toString().equals(tmp[0])) {
@@ -397,7 +426,7 @@ public class ApartmentView extends JFrame implements ActionListener {
         ownerField.setText("");
         floorComboBox.setSelectedIndex(0);
         blockComboBox.setSelectedIndex(0);
-        quarterComboBox.setSelectedIndex(0); 
+        quarterComboBox.setSelectedIndex(0);
         yearComboBox.setSelectedIndex(0);
         radioGroup.clearSelection();
         managementField.setText("");

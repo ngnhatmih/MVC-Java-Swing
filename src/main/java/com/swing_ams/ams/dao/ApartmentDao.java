@@ -9,7 +9,7 @@ import com.swing_ams.ams.utils.FileUtils;
 
 public final class ApartmentDao {
     private static final String APARTMENT_FILE_NAME = "apartment.xml";
-    private List<Apartment> listApartments = new ArrayList<>();
+    private List<Apartment> listApartments;
 
     public ApartmentDao() {
         this.listApartments = readListApartments();
