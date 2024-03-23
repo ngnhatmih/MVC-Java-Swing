@@ -1,6 +1,7 @@
 package com.swing_ams.ams.model;
 
 public class User {
+
     private String userName;
     private String password;
 

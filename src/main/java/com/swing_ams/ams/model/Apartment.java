@@ -1,4 +1,5 @@
 package com.swing_ams.ams.model;
+
 import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,13 +9,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "apartment")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Apartment implements Serializable {
+
     private long id;
     private String block;
     private int floor;
     private String owner;
 
     private ApartmentService service;
-    
+
     public Apartment() {
         id = 0;
         owner = "";
@@ -22,8 +24,8 @@ public class Apartment implements Serializable {
         floor = 1;
         service = new ApartmentService();
     }
-    
-    public Apartment(int id, String owner,  int floor, String block, ApartmentService service) {
+
+    public Apartment(int id, String owner, int floor, String block, ApartmentService service) {
         super();
         this.id = id;
         this.owner = owner;
@@ -31,7 +33,6 @@ public class Apartment implements Serializable {
         this.block = block;
         this.service = service;
     }
-    
 
     public long getId() {
         return id;
@@ -56,7 +57,7 @@ public class Apartment implements Serializable {
     public void setBlock(String block) {
         this.block = block;
     }
-    
+
     public ApartmentService getService() {
         return service;
     }
@@ -72,6 +73,5 @@ public class Apartment implements Serializable {
     public void setOwner(String owner) {
         this.owner = owner;
     }
-    
-    
+
 }

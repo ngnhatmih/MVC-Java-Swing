@@ -10,6 +10,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class ApartmentController {
+
     private final ApartmentDao apartmentDao;
     private final ApartmentView apartmentView;
 
@@ -30,6 +31,7 @@ public class ApartmentController {
     }
 
     class AddApartmentListener implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             Apartment apartment = apartmentView.getApartmentInfo();
@@ -44,6 +46,7 @@ public class ApartmentController {
     }
 
     class EditApartmentListener implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             Apartment apartment = apartmentView.getApartmentInfo();
@@ -58,6 +61,7 @@ public class ApartmentController {
     }
 
     class DeleteApartmentListener implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             Apartment apartment = apartmentView.getApartmentInfo();
@@ -69,11 +73,11 @@ public class ApartmentController {
             }
         }
     }
-    
+
     class ListStudentSelectionListener implements ListSelectionListener {
+
         public void valueChanged(ListSelectionEvent e) {
             apartmentView.fillApartmentFromSelectedRow();
         }
     }
-
 }

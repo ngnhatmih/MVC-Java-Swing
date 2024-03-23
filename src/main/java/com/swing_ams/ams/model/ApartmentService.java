@@ -1,4 +1,5 @@
 package com.swing_ams.ams.model;
+
 import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,6 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "service")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ApartmentService implements Serializable {
+
     private int management;
     private int electricity;
     private int water;
@@ -15,28 +17,31 @@ public class ApartmentService implements Serializable {
     private boolean paid;
     private PaidDate date;
     
+    @XmlRootElement(name = "paid-date")
+    @XmlAccessorType(XmlAccessType.FIELD)
     public static class PaidDate {
-        private OneThird oneThird;
+
+        private Quarter quarter;
         private int year;
-        
+
         public PaidDate() {
-            oneThird = OneThird.NONE;
+            quarter = Quarter.NONE;
             year = 0;
         }
-        
-        public PaidDate(OneThird oneThird, int year) {
-            this.oneThird = oneThird;
+
+        public PaidDate(Quarter quarter, int year) {
+            this.quarter = quarter;
             this.year = year;
         }
-        
-        public OneThird getOneThird() {
-            return oneThird;
+
+        public Quarter getQuarter() {
+            return quarter;
         }
 
-        public void setOneThird(OneThird oneThird) {
-            this.oneThird = oneThird;
+        public void setQuarter(Quarter quarter) {
+            this.quarter = quarter;
         }
-        
+
         public int getYear() {
             return year;
         }
@@ -44,15 +49,19 @@ public class ApartmentService implements Serializable {
         public void setYear(int year) {
             this.year = year;
         }
+        
+        public String toString() {
+            return quarter.value + "/" + String.valueOf(year);
+        }
     }
-    
+
     public ApartmentService() {
         paid = false;
         management = electricity = water = elevator = 0;
         date = new PaidDate();
-        
+
     }
-    
+
     public ApartmentService(boolean paid, PaidDate data, int management, int electricity, int water, int elevator) {
         super();
         this.paid = paid;
@@ -94,9 +103,8 @@ public class ApartmentService implements Serializable {
     public void setElevator(int elevator) {
         this.elevator = elevator;
     }
-    
-    public int getTotal()
-    {
+
+    public int getTotal() {
         return management + electricity + elevator + water;
     }
 
@@ -115,8 +123,18 @@ public class ApartmentService implements Serializable {
     public void setDate(PaidDate date) {
         this.date = date;
     }
-       
-    private enum OneThird {
-        NONE, I, II, III, IV
+
+    public enum Quarter {
+        NONE, 
+        I("I"), 
+        II("II"), 
+        III("III"), 
+        IV("IV");
+        
+        public final String value;
+        private Quarter() { value = ""; }
+        private Quarter(String value) {
+            this.value = value;
+        }
     }
 }

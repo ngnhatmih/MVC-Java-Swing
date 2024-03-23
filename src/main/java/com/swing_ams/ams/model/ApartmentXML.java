@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "apartments")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ApartmentXML {
+
     private List<Apartment> apartments;
 
     public List<Apartment> getApartments() {

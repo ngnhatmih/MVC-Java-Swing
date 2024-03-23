@@ -9,7 +9,7 @@ import com.swing_ams.ams.utils.FileUtils;
 
 public final class ApartmentDao {
     private static final String APARTMENT_FILE_NAME = "apartment.xml";
-    private List<Apartment> listApartments;
+    private List<Apartment> listApartments = new ArrayList<>();
 
     public ApartmentDao() {
         this.listApartments = readListApartments();
@@ -25,7 +25,7 @@ public final class ApartmentDao {
         List<Apartment> list = new ArrayList<>();
         ApartmentXML xml = (ApartmentXML) FileUtils.readXMLFile(APARTMENT_FILE_NAME, ApartmentXML.class);
         
-        if (xml != null) {
+        if (xml != null && xml.getApartments() != null && !xml.getApartments().isEmpty()) {
             list = xml.getApartments();
         }
         return list;
@@ -41,6 +41,7 @@ public final class ApartmentDao {
     public void edit(Apartment apartment) {
         for (Apartment apt : listApartments) {
             if (apt.getId() == apartment.getId()) {
+                apt.setOwner(apartment.getOwner());
                 apt.setBlock(apartment.getBlock());
                 apt.setFloor(apartment.getFloor());
                 apt.setService(apartment.getService());
